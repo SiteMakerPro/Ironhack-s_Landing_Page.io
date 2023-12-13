@@ -1,0 +1,12 @@
+:root {
+	--primary__blue: #4dc3f9;
+	--primary__dark-blue: #2d354c;
+	--primary__white: #ffffff;
+
+	--second__grey: #818693;
+
+	--text__color-dark: var(--primary__dark-blue);
+	--text__color-grey: var(--second__grey);
+	--text__color-light: var(--primary__white);
+	--bg__color-blue: var(--primary__blue);
+}

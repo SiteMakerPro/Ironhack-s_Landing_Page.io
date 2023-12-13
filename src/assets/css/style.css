@@ -1,0 +1,429 @@
+@import 'fonts.css';
+
+@import 'var.css';
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+button {
+	text-decoration: none;
+}
+
+h1 {
+	--font-size__min: 36;
+	--font-size__max: 56;
+	margin-bottom: 24px;
+	text-align: center;
+	font-family: 'Roboto Mono';
+	font-weight: 500;
+	font-size: 56px;
+	letter-spacing: -0.72px;
+	color: var(--text__color-light);
+}
+
+.wrapper {
+	position: relative;
+	max-width: calc(1015px - 10px);
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+.mb64 {
+	margin-bottom: 64px;
+}
+
+.pt--pb {
+	padding: 64px 0;
+}
+
+.btn-apply {
+	--font-size__min: 16;
+	--font-size__max: 20;
+	--padding__min1: 12;
+	--padding__min2: 112;
+	--padding__max1: 17;
+	--padding__max2: 117;
+	padding: 17px 117px;
+	text-align: center;
+	font-family: 'Roboto Medium';
+	font-size: 20px;
+	background: none;
+	border: none;
+	border-radius: 6px;
+}
+
+.btn-apply--color--blue {
+	color: var(--text__color-light);
+	background-color: var(--bg__color-blue);
+}
+
+.btn-apply--color--white {
+	color: var(--primary__blue);
+	background-color: var(--primary__white);
+}
+
+.h2 {
+	--font-size__min: 28;
+	--font-size__max: 36;
+	font-family: 'Roboto Mono';
+	font-size: 36px;
+	font-weight: 500;
+	letter-spacing: -0.76px;
+}
+
+.h2--color--white {
+	color: var(--text__color-light);
+}
+
+.h2--color--black {
+	color: var(--text__color-dark);
+}
+
+.h3 {
+	--font-size__min: 22;
+	--font-size__max: 32;
+	font-family: 'Roboto Mono';
+	font-size: 32px;
+	font-weight: 500;
+	line-height: 30px;
+	color: var(--text__color-dark);
+}
+
+.text {
+	--font-size__min: 14;
+	--font-size__max: 20;
+	font-family: 'Roboto';
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 160%;
+	color: var(--text__color-grey);
+}
+
+.nav {
+	min-height: 88px;
+	background-color: var(--primary__dark-blue);
+}
+
+.nav__wrapper {
+	--padding__min1: 18;
+	--padding__min2: 10;
+	--padding__max1: 22;
+	--padding__max2: 10;
+	padding: 22px 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.nav__catalog-link {
+	/* TODO: Сделать свои пропорции размеров для разных экранов */
+	--font-size__min: 14;
+	--font-size__max: 16;
+	--padding__min1: 10;
+	--padding__min2: 25;
+	--padding__max1: 12;
+	--padding__max2: 27;
+	padding: 12px 27px;
+	text-align: center;
+	font-family: 'Roboto Regular';
+	font-weight: 400;
+	font-size: 16px;
+	/* TODO: Скопировать код снизу в GitHub */
+	/* ? Это код записи значения clamp() свойства font-size. Данный код изменяет размер шрифта при изменении ширины окна. Clamp() - замена тому же @mixin в SASS, при помощи которого там создавался адаптивный шрифт. И это значение поддерживается всеми современными браузерами, но до сих пор не добавлено в поддержку Emmet и JS, поэтому там этого значения не видно. */
+	/*
+		--font-size__min: 14;
+		--font-size__max: 16;
+		--difference: calc(var(--font-size__max) - var(--font-size__min)); 
+		font-size: clamp(
+		(var(--font-size__min) * 1px),
+		((var(--font-size__min) * 1px) + var(--difference) * (100vw / var(--layout-size))),
+		(var(--font-size__max) * 1px)
+	); */
+	color: var(--text__color-light);
+	border: 1px solid var(--text__color-light);
+	border-radius: 6px;
+}
+
+.nav__img {
+	--width__min: 40;
+	--width__max: 44;
+	width: 44px;
+}
+
+.hero {
+	max-width: 100%;
+	/* ? Здесь происходит чудо. Дело в том, что background поддерживает несколько слоёв фона, которые можно задать через запятую. Первый фон перекрывает второй, второй же третий и так далее. В данном премера на фон наложена маска в виде градиента. Этот метод можно ассоциировать со слоями в Photoshop, тот же принцип. */
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%), url('../img/IronHack.png') no-repeat center center/cover;
+}
+
+.hero__wrapper {
+	min-height: calc(100vh - 88px); /* mob: 100vh - 77px */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: var(--text__color-light);
+}
+
+.about__body {
+	gap: 24px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.about__item {
+	padding: 40px 26px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 492px;
+	width: 100%;
+	text-align: center;
+	background-color: #f8f8f8;
+}
+
+.about__h2 {
+	margin-bottom: 24px;
+	text-align: center;
+}
+
+.about__h3 {
+	margin-bottom: 16px;
+	letter-spacing: -0.64px;
+}
+
+.about__text {
+	margin-bottom: 40px;
+}
+
+.about__blue-text {
+	font-family: 'Roboto Bold';
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 30px;
+	text-transform: uppercase;
+	color: var(--primary__blue);
+}
+
+.states {
+	color: var(--text__color-dark);
+	background-color: var(--bg__color-blue);
+}
+.states__h2 {
+	margin-bottom: 24px;
+	text-align: center;
+}
+.states__body {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(114px, 1fr));
+	row-gap: 30px;
+}
+.states__item {
+	text-align: center;
+}
+
+.states__big-text {
+	--font-size__min: 80;
+	--font-size__max: 96;
+	font-family: 'Roboto Mono';
+	font-size: 96px;
+	font-weight: 500;
+	letter-spacing: -1.92px; /* -1.8px */
+}
+.states__normal-text {
+	--font-size__min: 16;
+	--font-size__max: 20;
+	font-family: 'Roboto Bold';
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 160%; /* 95% */
+	text-transform: uppercase;
+}
+
+.projects__body {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+	column-gap: 12px;
+	row-gap: 20px;
+	justify-content: center;
+}
+.projects__item {
+	width: 100%;
+	background-color: #fff;
+	border-radius: 6px 0;
+	filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.2));
+}
+.projects__item img {
+	object-fit: cover;
+	width: 100%;
+}
+.projects__h2 {
+	margin-bottom: 40px;
+	text-align: center;
+}
+.projects__item hr {
+	margin-bottom: 11px;
+}
+.projects__h4 {
+	--font-size__min: 16;
+	--font-size__max: 20;
+	margin-left: 16px;
+	margin-bottom: 11px;
+	font-family: 'Roboto Bold';
+	font-size: 20px;
+	font-weight: 500;
+	color: var(--text__color-dark);
+}
+
+.students__body {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(234px, 234px));
+	justify-content: space-between;
+	align-items: center;
+	row-gap: 24px;
+	column-gap: 77px;
+}
+.students__item {
+	width: 100%;
+	text-align: center;
+	align-items: center;
+}
+.students__item img {
+	margin-bottom: 16px;
+	object-fit: cover;
+	width: 100%;
+}
+.students__h2 {
+	margin-bottom: 48px;
+	text-align: center;
+}
+
+.teachers {
+	background-color: #f8f8f8;
+}
+.teachers__h2 {
+	margin-bottom: 48px;
+	text-align: center;
+}
+.teachers__body {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(234px, 234px));
+	column-gap: 77px;
+	row-gap: 24px;
+	justify-content: center;
+}
+.teachers__item {
+	width: 100%;
+	text-align: center;
+}
+.teachers__item img {
+	margin-bottom: 16px;
+	object-fit: cover;
+	width: 100%;
+}
+
+footer {
+	text-align: center;
+	background-color: var(--bg__color-blue);
+}
+
+footer h2 {
+	margin-bottom: 24px;
+}
+
+@media screen and (max-width: 992px) {
+	.about__text {
+		text-align: center;
+	}
+	.about__body {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.students__body {
+		column-gap: 38px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.nav__img {
+		width: 40px;
+	}
+	.nav__catalog-link {
+		padding: 10px 25px;
+		font-size: 12px;
+	}
+	.hero h1 {
+		font-size: 36px;
+	}
+	.btn-apply {
+		padding: 12px 112px;
+		font-size: 16px;
+	}
+	.students__body {
+		grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+		column-gap: 16px;
+	}
+	.teachers__body {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 16px;
+	}
+	.teachers__item {
+		max-width: 234px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.about__item {
+		max-width: 320px;
+	}
+	.states__body {
+		grid-template-columns: 1fr 1fr;
+	}
+	.students__body {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 16px;
+	}
+	.students__item {
+		max-width: 156px;
+	}
+	.teachers__item {
+		max-width: 156px;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.mb64 {
+		margin-bottom: 44px;
+	}
+	.pt--pb {
+		padding: 44px 0;
+	}
+	.hero__wrapper {
+		min-height: 692px;
+	}
+	.about__body {
+		gap: 12px;
+	}
+	.about__item {
+		max-width: 280px;
+	}
+	.projects__body {
+		grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
+	}
+}
