@@ -28,6 +28,10 @@ h1 {
 	color: var(--text__color-light);
 }
 
+.d-n {
+	display: none;
+}
+
 .wrapper {
 	position: relative;
 	max-width: calc(1015px - 10px);
@@ -286,6 +290,8 @@ h1 {
 }
 
 .students__body {
+	margin-bottom: 60px;
+	position: relative;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(234px, 234px));
 	justify-content: space-between;
@@ -306,6 +312,15 @@ h1 {
 .students__h2 {
 	margin-bottom: 48px;
 	text-align: center;
+}
+.students__footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.students__btn {
+	display: block;
+	cursor: pointer;
 }
 
 .teachers {

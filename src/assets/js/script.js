@@ -5,6 +5,7 @@ let adaptivePadding = document.querySelectorAll('.adaptive-padding');
 let adaptiveWidth = document.querySelectorAll('.adaptive-width');
 let adaptiveHeight = document.querySelectorAll('.adaptive-height');
 let adaptiveFont = document.querySelectorAll('.adaptive-font');
+let moreBtn = document.querySelector('.more-btn');
 
 // TODO: Добавить этот же скрипт и для подсчёта height блока hero
 // TODO: Написать код, который будет автоматически высчитывать font-size шрифта по пропорциям для разных экранов
@@ -71,3 +72,17 @@ const changeVar = () => {
 
 window.addEventListener('load', changeVar);
 window.addEventListener('resize', changeVar);
+
+document.addEventListener(
+	'DOMContentLoaded',
+	() => {
+		moreBtn.addEventListener('click', () => {
+			let allStudents = document.querySelectorAll('.students__item#visibility-change');
+			allStudents.forEach(function (item) {
+				item.classList.toggle('d-n');
+				moreBtn.textContent = moreBtn.textContent === 'More' ? 'Close' : 'More';
+			});
+		});
+	},
+	false
+);
