@@ -1,88 +1,48 @@
-const layoutSize = 1440;
-
-let adaptiveMargin = document.querySelectorAll('.adaptive-margin');
-let adaptivePadding = document.querySelectorAll('.adaptive-padding');
-let adaptiveWidth = document.querySelectorAll('.adaptive-width');
-let adaptiveHeight = document.querySelectorAll('.adaptive-height');
-let adaptiveFont = document.querySelectorAll('.adaptive-font');
-let moreBtn = document.querySelector('.more-btn');
-
 // TODO: Добавить этот же скрипт и для подсчёта height блока hero
 // TODO: Написать код, который будет автоматически высчитывать font-size шрифта по пропорциям для разных экранов
-// TODO: Переделать абсолютно весь код. Написать заново весь функционал уже с другим подходом. Этот код, хоть и работает, он очень большой, а его задача простая, адаптировать размеры под ширину окна. В идеале логика этого функционала должан занимать около 30 строчек кода.
-// * FIXME: Идея такова. Я просто к нужному элементу добавляю класс adaptive-size, а после просматриваю при помощи условий свойства каждого объекта с этим классом. Внутри условий естественно будет код ниже, однако я верю, что при помощи условий я смогу сократить код.
+
+const layoutSize = 1440;
+
+let changeSize = 0;
+
+let adaptive = document.querySelectorAll('.adaptive');
+
+const getValueStyle = (item, name_style) => (varValue = String(getComputedStyle(item).getPropertyValue(name_style)));
+
+const adaptiveForEach = (name_style) => {
+	return adaptive.forEach(function (item) {
+		let size = String(getValueStyle(item, `--${name_style}`)).split(' ');
+
+		let desktopSize1 = (3 * (size[1] - size[0])) / 2;
+		let desktopSize2 = (3 * (size[3] - size[2])) / 2;
+
+		let desktopSize = `${desktopSize1} ${desktopSize2}`.split(' ');
+
+		let changeSize1 = size[1] - desktopSize[0] + desktopSize[0] * (window.innerWidth / layoutSize);
+		let changeSize2 = size[3] - desktopSize[1] + desktopSize[1] * (window.innerWidth / layoutSize);
+
+		changeSize = size[2] === undefined && size[3] === undefined ? changeSize1 : `${changeSize1} ${changeSize2}`;
+
+		item.style.setProperty(name_style, changeSize);
+	});
+};
 
 const changeVar = () => {
-	adaptiveMargin.forEach(function (item) {
-		let min1 = Number(getComputedStyle(item).getPropertyValue('--margin__min1'));
-		let min2 = Number(getComputedStyle(item).getPropertyValue('--margin__min2'));
-		let max1 = Number(getComputedStyle(item).getPropertyValue('--margin__max1'));
-		let max2 = Number(getComputedStyle(item).getPropertyValue('--margin__max2'));
-
-		let desktopSize1 = (3 * (max1 - min1)) / 2;
-		let desktopSize2 = (3 * (max2 - min2)) / 2;
-		let changeSize1 = max1 - desktopSize1 + desktopSize1 * (window.innerWidth / layoutSize);
-		let changeSize2 = max2 - desktopSize2 + desktopSize2 * (window.innerWidth / layoutSize);
-
-		// item.style.setProperty('margin', changeSize1 + ' ' + changeSize2);
-		// item.style.setProperty('margin', `${changeSize1} ${changeSize2}`);
-		item.style.setProperty('margin', changeSize1 + ' ' + changeSize2);
-	});
-	adaptivePadding.forEach(function (item) {
-		let min1 = Number(getComputedStyle(item).getPropertyValue('--padding__min1'));
-		let min2 = Number(getComputedStyle(item).getPropertyValue('--padding__min2'));
-		let max1 = Number(getComputedStyle(item).getPropertyValue('--padding__max1'));
-		let max2 = Number(getComputedStyle(item).getPropertyValue('--padding__max2'));
-
-		let desktopSize1 = (3 * (max1 - min1)) / 2;
-		let desktopSize2 = (3 * (max2 - min2)) / 2;
-		let changeSize1 = max1 - desktopSize1 + desktopSize1 * (window.innerWidth / layoutSize);
-		let changeSize2 = max2 - desktopSize2 + desktopSize2 * (window.innerWidth / layoutSize);
-
-		item.style.setProperty('padding', changeSize1 + ' ' + changeSize2);
-	});
-	adaptiveWidth.forEach(function (item) {
-		let min = Number(getComputedStyle(item).getPropertyValue('--width__min'));
-		let max = Number(getComputedStyle(item).getPropertyValue('--width__max'));
-
-		let desktopSize = (3 * (max - min)) / 2;
-		let changeSize = max - desktopSize + desktopSize * (window.innerWidth / layoutSize);
-
-		item.style.setProperty('width', changeSize);
-	});
-	adaptiveHeight.forEach(function (item) {
-		let min = Number(getComputedStyle(item).getPropertyValue('--height__min'));
-		let max = Number(getComputedStyle(item).getPropertyValue('--height__max'));
-
-		let desktopSize = (3 * (max - min)) / 2;
-		let changeSize = max - desktopSize + desktopSize * (window.innerWidth / layoutSize);
-
-		item.style.setProperty('height', changeSize);
-	});
-	adaptiveFont.forEach(function (item) {
-		let min = Number(getComputedStyle(item).getPropertyValue('--font-size__min'));
-		let max = Number(getComputedStyle(item).getPropertyValue('--font-size__max'));
-
-		let desktopSize = (3 * (max - min)) / 2;
-		let changeSize = max - desktopSize + desktopSize * (window.innerWidth / layoutSize);
-
-		item.style.setProperty('font-size', changeSize);
+	let sizeList = ['margin', 'padding', 'width', 'height', 'font-size'];
+	sizeList.forEach((el) => {
+		adaptiveForEach(el);
 	});
 };
 
 window.addEventListener('load', changeVar);
 window.addEventListener('resize', changeVar);
 
-document.addEventListener(
-	'DOMContentLoaded',
-	() => {
-		moreBtn.addEventListener('click', () => {
-			let allStudents = document.querySelectorAll('.students__item#visibility-change');
-			allStudents.forEach(function (item) {
-				item.classList.toggle('d-n');
-				moreBtn.textContent = moreBtn.textContent === 'More' ? 'Close' : 'More';
-			});
-		});
-	},
-	false
-);
+let moreBtn = document.querySelector('.more-btn');
+
+function showMoreStudent() {
+	let allStudents = document.querySelectorAll('.students__item#visibility-change');
+	allStudents.forEach((item) => {
+		item.classList.toggle('d-n');
+		moreBtn.textContent = moreBtn.textContent === 'More' ? 'Close' : 'More';
+	});
+}

@@ -17,8 +17,7 @@ button {
 }
 
 h1 {
-	--font-size__min: 36;
-	--font-size__max: 56;
+	--font-size: 36 56;
 	margin-bottom: 24px;
 	text-align: center;
 	font-family: 'Roboto Mono';
@@ -48,12 +47,8 @@ h1 {
 }
 
 .btn-apply {
-	--font-size__min: 16;
-	--font-size__max: 20;
-	--padding__min1: 12;
-	--padding__min2: 112;
-	--padding__max1: 17;
-	--padding__max2: 117;
+	--font-size: 16 20;
+	--padding: 12 17 112 117;
 	padding: 17px 117px;
 	text-align: center;
 	font-family: 'Roboto Medium';
@@ -74,8 +69,7 @@ h1 {
 }
 
 .h2 {
-	--font-size__min: 28;
-	--font-size__max: 36;
+	--font-size: 28 36;
 	font-family: 'Roboto Mono';
 	font-size: 36px;
 	font-weight: 500;
@@ -91,8 +85,7 @@ h1 {
 }
 
 .h3 {
-	--font-size__min: 22;
-	--font-size__max: 32;
+	--font-size: 22 32;
 	font-family: 'Roboto Mono';
 	font-size: 32px;
 	font-weight: 500;
@@ -101,8 +94,7 @@ h1 {
 }
 
 .text {
-	--font-size__min: 14;
-	--font-size__max: 20;
+	--font-size: 14 20;
 	font-family: 'Roboto';
 	font-size: 20px;
 	font-weight: 400;
@@ -116,11 +108,7 @@ h1 {
 }
 
 .nav__wrapper {
-	--padding__min1: 18;
-	--padding__min2: 10;
-	--padding__max1: 22;
-	--padding__max2: 10;
-	padding: 22px 10px;
+	min-height: inherit;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -129,12 +117,8 @@ h1 {
 
 .nav__catalog-link {
 	/* TODO: Сделать свои пропорции размеров для разных экранов */
-	--font-size__min: 14;
-	--font-size__max: 16;
-	--padding__min1: 10;
-	--padding__min2: 25;
-	--padding__max1: 12;
-	--padding__max2: 27;
+	--font-size: 14 16;
+	--padding: 10 12 25 27;
 	padding: 12px 27px;
 	text-align: center;
 	font-family: 'Roboto Regular';
@@ -157,8 +141,7 @@ h1 {
 }
 
 .nav__img {
-	--width__min: 40;
-	--width__max: 44;
+	--width: 40 44;
 	width: 44px;
 }
 
@@ -237,16 +220,14 @@ h1 {
 }
 
 .states__big-text {
-	--font-size__min: 80;
-	--font-size__max: 96;
+	--font-size: 80 96;
 	font-family: 'Roboto Mono';
 	font-size: 96px;
 	font-weight: 500;
 	letter-spacing: -1.92px; /* -1.8px */
 }
 .states__normal-text {
-	--font-size__min: 16;
-	--font-size__max: 20;
+	--font-size: 16 20;
 	font-family: 'Roboto Bold';
 	font-size: 20px;
 	font-weight: 500;
@@ -279,8 +260,7 @@ h1 {
 	margin-bottom: 11px;
 }
 .projects__h4 {
-	--font-size__min: 16;
-	--font-size__max: 20;
+	--font-size: 16 20;
 	margin-left: 16px;
 	margin-bottom: 11px;
 	font-family: 'Roboto Bold';
