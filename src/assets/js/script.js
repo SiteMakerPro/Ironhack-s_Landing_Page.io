@@ -37,12 +37,12 @@ const changeVar = () => {
 window.addEventListener('load', changeVar);
 window.addEventListener('resize', changeVar);
 
-let moreBtn = document.querySelector('.more-btn');
+let visibilityBtn = document.querySelector('.visibility-btn');
 
 function showMoreStudent() {
 	let allStudents = document.querySelectorAll('.students__item#visibility-change');
 	allStudents.forEach((item) => {
 		item.classList.toggle('d-n');
-		moreBtn.textContent = moreBtn.textContent === 'More' ? 'Close' : 'More';
+		visibilityBtn.textContent = visibilityBtn.textContent === 'More' ? 'Close' : 'More';
 	});
 }
