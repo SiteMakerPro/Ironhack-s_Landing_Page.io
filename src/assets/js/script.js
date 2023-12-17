@@ -3,25 +3,24 @@
 
 const layoutSize = 1440;
 
-let changeSize = 0;
-
 let adaptive = document.querySelectorAll('.adaptive');
 
 const getValueStyle = (item, name_style) => (varValue = String(getComputedStyle(item).getPropertyValue(name_style)));
+
+const extremesSize = (min, max) => (3 * (max - min)) / 2;
+
+const valueChangeSize = (size, desktopSize) => size - desktopSize + desktopSize * (window.innerWidth / layoutSize);
 
 const adaptiveForEach = (name_style) => {
 	return adaptive.forEach(function (item) {
 		let size = String(getValueStyle(item, `--${name_style}`)).split(' ');
 
-		let desktopSize1 = (3 * (size[1] - size[0])) / 2;
-		let desktopSize2 = (3 * (size[3] - size[2])) / 2;
+		let desktopSize = `${extremesSize(size[0], size[1])} ${extremesSize(size[2], size[3])}`.split(' ');
 
-		let desktopSize = `${desktopSize1} ${desktopSize2}`.split(' ');
-
-		let changeSize1 = size[1] - desktopSize[0] + desktopSize[0] * (window.innerWidth / layoutSize);
-		let changeSize2 = size[3] - desktopSize[1] + desktopSize[1] * (window.innerWidth / layoutSize);
-
-		changeSize = size[2] === undefined && size[3] === undefined ? changeSize1 : `${changeSize1} ${changeSize2}`;
+		let changeSize =
+			size[2] === undefined && size[3] === undefined
+				? valueChangeSize(size[1], desktopSize[0])
+				: `${valueChangeSize(size[1], desktopSize[0])} ${valueChangeSize(size[3], desktopSize[1])}`;
 
 		item.style.setProperty(name_style, changeSize);
 	});
@@ -34,12 +33,9 @@ const changeVar = () => {
 	});
 };
 
-window.addEventListener('load', changeVar);
-window.addEventListener('resize', changeVar);
-
-let visibilityBtn = document.querySelector('.visibility-btn');
-
 function showMoreStudent() {
+	let visibilityBtn = document.querySelector('.visibility-btn');
+
 	let allStudents = document.querySelectorAll('.students__item#visibility-change');
 	allStudents.forEach((item) => {
 		item.classList.toggle('d-n');
