@@ -218,7 +218,25 @@ h1 {
 .states__item {
 	text-align: center;
 }
-
+.states__link {
+	color: inherit;
+}
+.states__link svg {
+	width: 28px;
+	height: 28px;
+}
+.states__link path {
+	fill: var(--primary__dark-blue);
+}
+.states__link,
+.states__link path {
+	transition: all 0.5s;
+}
+.states__link:hover,
+.states__link:hover path {
+	color: var(--text__color-light);
+	fill: var(--text__color-light);
+}
 .states__big-text {
 	--font-size: 80 96;
 	font-family: 'Roboto Mono';

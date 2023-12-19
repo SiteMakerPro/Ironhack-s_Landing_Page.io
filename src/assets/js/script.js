@@ -55,3 +55,17 @@ function showMoreStudent() {
 	}
 }
 
+let anchorList = document.querySelectorAll('a[href^="#"]');
+
+anchorList.forEach((anchor) => {
+	anchor.addEventListener('click', (e) => {
+		e.preventDefault();
+
+		const blockId = anchor.getAttribute('href').substring(1);
+
+		document.getElementById(blockId).scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
+	});
+});
