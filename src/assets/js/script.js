@@ -41,4 +41,17 @@ function showMoreStudent() {
 		item.classList.toggle('d-n');
 		visibilityBtn.textContent = visibilityBtn.textContent === 'More' ? 'Close' : 'More';
 	});
+
+	if (visibilityBtn.textContent === 'More') {
+		let elemCoords = visibilityBtn.getBoundingClientRect().top + document.body.scrollTop - window.innerHeight / 1.2;
+
+		let scrollCoords = document.body.scrollTop;
+
+		let smoothScroll = setInterval(function () {
+			scrollCoords -= 15;
+			window.scrollTo(0, scrollCoords);
+			scrollCoords <= elemCoords && clearInterval(smoothScroll);
+		}, 20);
+	}
 }
+
