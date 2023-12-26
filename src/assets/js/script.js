@@ -87,16 +87,33 @@ let human = {
 	about: {
 		country: '...',
 		biography: `<span style="color: red; text-transform: uppercase;">Not information...</span>`,
+		character: ['', '', ''],
+		hobbies: ['', '', ''],
+		inANutshell: '',
 	},
 };
 
 function clearModalContent() {
-	document.querySelector('.modal-window--about #country, .modal-window--about #biography').innerHTML = '';
+	document.querySelector('.modal-window--about #country, .modal-window--about #biography, .modal-window--about #in_a_nutshell').innerHTML = '';
+
+	let clearCharacterLi = document.querySelectorAll('.modal-window--about #character li');
+	clearCharacterLi.forEach((el) => {
+		el.innerHTML = '';
+	});
+
+	let clearHobbiesLi = document.querySelectorAll('.modal-window--about #hobbies li');
+	clearHobbiesLi.forEach((el) => {
+		el.innerHTML = '';
+	});
+
 	human = {
 		name: '',
 		about: {
 			country: '...',
 			biography: `<span style="color: red; text-transform: uppercase;">Not information...</span>`,
+			character: ['', '', ''],
+			hobbies: ['', '', ''],
+			inANutshell: '',
 		},
 	};
 }
@@ -123,8 +140,23 @@ const changeModalWindow = (name, element) => {
 
 	let aboutHuman = human.about;
 
+	let characterHuman = aboutHuman.character;
+	let characterLi = document.querySelectorAll('.modal-window--about #character li');
+
+	for (let i = 0; i < characterLi.length; i++) {
+		characterLi[i].innerHTML += characterHuman[i];
+	}
+
+	let hobbiesHuman = aboutHuman.hobbies;
+	let hobbiesLi = document.querySelectorAll('.modal-window--about #hobbies li');
+
+	for (let i = 0; i < hobbiesLi.length; i++) {
+		hobbiesLi[i].innerHTML += hobbiesHuman[i];
+	}
+
 	document.querySelector('.modal-window--about #country').innerHTML = aboutHuman.country;
 	document.querySelector('.modal-window--about #biography').innerHTML = aboutHuman.biography;
+	document.querySelector('.modal-window--about #in_a_nutshell').innerHTML = aboutHuman.inANutshell;
 };
 
 const showMWAbout = (event, name) => {

@@ -4,14 +4,20 @@
 			"name": "Paul",
 			"about": {
 				"country": "Argentina",
-				"biography": "Hello! My name is Paul. I come from Argentina, which is a pretty good country. I am a very charismatic and friendly guy, believe me, those girls in the photo were convinced of this &#128521;. I don’t insult my own people; I have such principles.<br /> Also, I am a creative person. Since childhood, I remember how my mother admired the way I drew a kitten from the street. 'Well, after this, son, you definitely need to study to be a designer.' And guess what? <br /> That's exactly what I did. First, I signed up for a young artists’ club; I wanted to paint the Mona Lisa, but I didn’t have enough skills. And when he grew up, he moved to Amsterdam and took courses at IronHack. <br /> There I found a pretty good team. At first I remember everyone was fighting, but then they got along very well with each other. The teachers there are also wonderful. <br />"
+				"biography": "Hello! My name is Paul. I come from Argentina, which is a pretty good country. I am a very charismatic and friendly guy, believe me, those girls in the photo were convinced of this &#128521;. I don’t insult my own people; I have such principles.<br /> Also, I am a creative person. Since childhood, I remember how my mother admired the way I drew a kitten from the street. 'Well, after this, son, you definitely need to study to be a designer.' And guess what? <br /> That's exactly what I did. First, I signed up for a young artists’ club; I wanted to paint the Mona Lisa, but I didn’t have enough skills. And when he grew up, he moved to Amsterdam and took courses at IronHack. <br /> There I found a pretty good team. At first I remember everyone was fighting, but then they got along very well with each other. The teachers there are also wonderful. <br />",
+				"character": ["charismatic", "friendly", "humorous"],
+				"hobbies": ["drawing", "reading a bike", "beard care"],
+				"inANutshell": "You won't get bored with him"
 			}
 		},
 		{
 			"name": "Céline",
 			"about": {
 				"country": "USA",
-				"biography": "Hey, Hey. My name is Céline"
+				"biography": "Hey, Hey. My name is Céline",
+				"character": ["", "", ""],
+				"hobbies": ["", "", ""],
+				"inANutshell": ""
 			}
 		}
 	],
@@ -20,7 +26,10 @@
 			"name": "Jérémie",
 			"about": {
 				"country": "Brazil",
-				"biography": "Hello! I'm from Brazil. I have 37 years old."
+				"biography": "Hello! I'm from Brazil. I have 37 years old.",
+				"character": ["", "", ""],
+				"hobbies": ["", "", ""],
+				"inANutshell": ""
 			}
 		}
 	]
