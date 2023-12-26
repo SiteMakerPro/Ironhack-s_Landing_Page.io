@@ -13,6 +13,8 @@ a {
 }
 
 button {
+	background: none;
+	border: none;
 	text-decoration: none;
 }
 
@@ -93,6 +95,12 @@ h1 {
 	color: var(--text__color-dark);
 }
 
+.h4 {
+	font-family: 'Roboto Mono';
+	font-size: 20px;
+	font-weight: 500;
+}
+
 .text {
 	--font-size: 14 20;
 	font-family: 'Roboto';
@@ -100,6 +108,15 @@ h1 {
 	font-weight: 400;
 	line-height: 160%;
 	color: var(--text__color-grey);
+}
+
+.blue-text {
+	font-family: 'Roboto Bold';
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 30px;
+	text-transform: uppercase;
+	color: var(--primary__blue);
 }
 
 .nav {
@@ -193,15 +210,6 @@ h1 {
 	margin-bottom: 40px;
 }
 
-.about__blue-text {
-	font-family: 'Roboto Bold';
-	font-size: 14px;
-	font-weight: 700;
-	line-height: 30px;
-	text-transform: uppercase;
-	color: var(--primary__blue);
-}
-
 .states {
 	color: var(--text__color-dark);
 	background-color: var(--bg__color-blue);
@@ -281,7 +289,7 @@ h1 {
 	--font-size: 16 20;
 	margin-left: 16px;
 	margin-bottom: 11px;
-	font-family: 'Roboto Bold';
+	font-family: 'Roboto Medium';
 	font-size: 20px;
 	font-weight: 500;
 	color: var(--text__color-dark);
