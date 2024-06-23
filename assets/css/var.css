@@ -9,4 +9,6 @@
 	--text__color-grey: var(--second__grey);
 	--text__color-light: var(--primary__white);
 	--bg__color-blue: var(--primary__blue);
+
+	--img-source: 'assets/img/';
 }

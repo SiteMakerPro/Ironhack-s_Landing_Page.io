@@ -5,7 +5,7 @@
 		<meta charset="UTF-8" />
 		<meta name="robots" content="none" />
 		<meta name="keywords" content="name" />
-		<link rel="stylesheet" href="assets/css/style.css" />
+		<link rel="stylesheet" href="style.css" />
 
 		<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png" />
@@ -17,7 +17,7 @@
 		<meta name="msapplication-config" content="browserconfig.xml" />
 		<meta name="theme-color" content="#ffffff" />
 	</head>
-	<body onresize="changeVar();" onload="changeVar();">
+	<body onresize="adaptiveSize();" onload="adaptiveSize();">
 		<nav class="nav">
 			<div class="nav__wrapper wrapper adaptive">
 				<a href="#" target="_self"><img class="nav__img adaptive" src="assets/img/logo.png" width="44" alt="logo" /></a>
@@ -26,14 +26,14 @@
 			</div>
 		</nav>
 		<aside>
-			<div class="overlay overlay--about d-n">
-				<div class="modal-window modal-window--about">
-					<div class="modal-window__header">
-						<div class="modal-window__title">
-							<h3 class="modal-window__h3 h3 adaptive" id="firstname">Paul</h3>
-							<p class="modal-window__blue-text blue-text" id="country">Argentina</p>
+			<div class="overlay about-overlay d-n">
+				<div class="about-overlay__mw">
+					<div class="about-overlay__header">
+						<div class="about-overlay__title">
+							<h3 class="about-overlay__h3 h3 adaptive" id="firstname"></h3>
+							<p class="about-overlay__blue-text blue-text" id="country"></p>
 						</div>
-						<button class="modal-window__btn-close btn-close" onclick="hiddenMWAbout();">
+						<button class="about-overlay__btn-close btn-close" onclick="statusMWAbout(null, event, 'close');">
 							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<rect width="32" height="32" rx="16" fill="#4DC3F9" />
 								<path
@@ -49,33 +49,95 @@
 							</svg>
 						</button>
 					</div>
-					<div class="modal-window__body">
-						<div class="modal-window__block modal-window__block-left">
-							<div class="modal-window__item">
-								<h4 class="modal-window__h4 h4 adaptive">Character</h4>
-								<ul class="modal-window__list" id="character">
-									<li class="modal-window__text text adaptive"></li>
-									<li class="modal-window__text text adaptive"></li>
-									<li class="modal-window__text text adaptive"></li>
+					<div class="about-overlay__body">
+						<div class="about-overlay__block about-overlay__block-left">
+							<div class="about-overlay__item">
+								<h4 class="about-overlay__h4 h4 adaptive">Character</h4>
+								<ul class="about-overlay__list" id="character">
+									<li class="about-overlay__text text adaptive"></li>
+									<li class="about-overlay__text text adaptive"></li>
+									<li class="about-overlay__text text adaptive"></li>
 								</ul>
 							</div>
-							<div class="modal-window__item">
-								<h4 class="modal-window__h4 h4 adaptive">Hobbies</h4>
-								<ul class="modal-window__list" id="hobbies">
-									<li class="modal-window__text text adaptive"></li>
-									<li class="modal-window__text text adaptive"></li>
-									<li class="modal-window__text text adaptive"></li>
+							<div class="about-overlay__item">
+								<h4 class="about-overlay__h4 h4 adaptive">Hobbies</h4>
+								<ul class="about-overlay__list" id="hobbies">
+									<li class="about-overlay__text text adaptive"></li>
+									<li class="about-overlay__text text adaptive"></li>
+									<li class="about-overlay__text text adaptive"></li>
 								</ul>
 							</div>
-							<div class="modal-window__item">
-								<h4 class="modal-window__h4 h4 adaptive">In a nutshell</h4>
-								<p class="modal-window__text text adaptive" id="in_a_nutshell"></p>
+							<div class="about-overlay__item">
+								<h4 class="about-overlay__h4 h4 adaptive">In a nutshell</h4>
+								<p class="about-overlay__text text adaptive" id="in_a_nutshell"></p>
 							</div>
 						</div>
-						<div class="modal-window__block modal-window__block-right">
-							<p class="modal-window__text text adaptive" id="biography"></p>
+						<div class="about-overlay__block about-overlay__block-right">
+							<p class="about-overlay__text text adaptive" id="biography"></p>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="overlay select-overlay d-n" onclick="hiddenListCountry()">
+				<div class="select-overlay__mw">
+					<div class="select-overlay__body" id="country-select">
+						<input class="select-overlay__blue-text" id="default-selected" value="Argentina" readonly />
+						<ul class="select-overlay__list">
+							<li onclick="selectedCountry(event);" id="selected">Argentina</li>
+							<li onclick="selectedCountry(event);">Russia</li>
+							<li onclick="selectedCountry(event);">USA</li>
+							<li onclick="selectedCountry(event);">Britain</li>
+							<li onclick="selectedCountry(event);">China</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="overlay apply-overlay d-n">
+				<div class="apply-overlay__mw">
+					<div class="apply-overlay__header">
+						<h3 class="apply-overlay__h3 h3 adaptive" id="firstname">Apply</h3>
+						<button class="apply-overlay__btn-close btn-close" onclick="statusMWApply(event, 'close');">
+							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="32" height="32" rx="16" fill="#4DC3F9" />
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M24.6777 7.73654L7.70711 24.7071L7 24L23.9706 7.02944L24.6777 7.73654Z"
+									fill="white" />
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M24.2635 24.6777L7.29289 7.70711L8 7L24.9706 23.9706L24.2635 24.6777Z"
+									fill="white" />
+							</svg>
+						</button>
+					</div>
+					<form class="apply-overlay__body">
+						<div class="apply-overlay__item">
+							<h4 class="apply-overlay__h4 h4 adaptive">About the course</h4>
+							<label class="apply-overlay__label" for="country-select">I want to attend this campus</label>
+							<div class="apply-overlay__select">
+								<div class="apply-overlay__search" onclick="visibleListCountry();">
+									<input class="apply-overlay__blue-text" id="countryName" type="text" placeholder="Argentina" readonly />
+									<svg class="apply-overlay__triangle" width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M5 5L10 0L0 0L5 5Z" />
+									</svg>
+								</div>
+							</div>
+							<button class="apply-overlay__btn btn btn--color--grey adaptive">UX/UI Design Bootcamp Full Time</button>
+							<button class="apply-overlay__btn btn btn--color--blue adaptive">Web Development Part time</button>
+						</div>
+						<div class="apply-overlay__item apply-overlay__item--about-you">
+							<h4 class="apply-overlay__h4 h4 adaptive">About you</h4>
+							<div class="apply-overlay__name">
+								<input class="apply-overlay__input adaptive" id="Name" type="text" placeholder="Name" />
+								<input class="apply-overlay__input adaptive" id="Surname" type="text" placeholder="Surname" />
+							</div>
+							<input class="apply-overlay__input adaptive error" id="Email" type="text" placeholder="Email" />
+							<input class="apply-overlay__input adaptive" id="Number" type="text" placeholder="Number" />
+						</div>
+						<button type="button" class="apply-overlay__btn btn btn--color--blue adaptive" id="apply-btn">Apply now</button>
+					</form>
 				</div>
 			</div>
 		</aside>
@@ -84,7 +146,7 @@
 				<div class="hero__wrapper wrapper">
 					<!-- TODO: Make a my Typography -->
 					<h1 class="adaptive">Preparing the next generation of&nbsp;digital creators</h1>
-					<button class="btn-apply btn-apply--color--blue adaptive">Apply now</button>
+					<button class="btn btn--color--blue btn-apply adaptive" onclick="statusMWApply(event, 'open');">Apply now</button>
 				</div>
 			</div>
 			<div class="about mb64">
@@ -208,126 +270,126 @@
 					<h2 class="students__h2 h2 h2--color--black adaptive">The Students</h2>
 					<div class="students__body">
 						<div class="students__item">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Paul');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Paul', event, 'open');">
 								<img class="students__img" src="assets/img/Paul.png" alt="man" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Paul</h3>
 							<p class="students__text text adaptive">Beard World Record</p>
 						</div>
 						<div class="students__item">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Céline');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Céline', event, 'open');">
 								<img class="students__img" src="assets/img/Céline.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Céline</h3>
 							<p class="students__text text adaptive">Typography Master</p>
 						</div>
 						<div class="students__item">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Julia');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Julia', event, 'open');">
 								<img class="students__img" src="assets/img/Julia.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Julia</h3>
 							<p class="students__text text adaptive">Illustration Queen</p>
 						</div>
 						<div class="students__item">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Lisa');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Lisa', event, 'open');">
 								<img class="students__img" src="assets/img/Lisa.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Lisa</h3>
 							<p class="students__text text adaptive">Wine Lover</p>
 						</div>
 						<div class="students__item">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Yasmina');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Yasmina', event, 'open');">
 								<img class="students__img" src="assets/img/Yasmina.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Yasmina</h3>
 							<p class="students__text text adaptive">Bombom Girl</p>
 						</div>
 						<div class="students__item">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Jerome');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Jerome', event, 'open');">
 								<img class="students__img" src="assets/img/Jerome.png" alt="man" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Jerome</h3>
 							<p class="students__text text adaptive">Crooner Voice</p>
 						</div>
 						<div class="students__item">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Mellisa');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Mellisa', event, 'open');">
 								<img class="students__img" src="assets/img/Mellisa.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Mellisa</h3>
 							<p class="students__text text adaptive">Sweet Sunshine</p>
 						</div>
 						<div class="students__item">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Martin');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Martin', event, 'open');">
 								<img class="students__img" src="assets/img/Martin.png" alt="man" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Martin</h3>
 							<p class="students__text text adaptive">Purchase Addict</p>
 						</div>
 						<div class="students__item">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Gwen');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Gwen', event, 'open');">
 								<img class="students__img" src="assets/img/Gwen.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Gwen</h3>
 							<p class="students__text text adaptive">Story-Teller</p>
 						</div>
 						<div class="students__item d-n" id="visibility-change">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Christophe');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Christophe', event, 'open');">
 								<img class="students__img" src="assets/img/Christophe.png" alt="man" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Christophe</h3>
 							<p class="students__text text adaptive">Gru’s Bestfriend</p>
 						</div>
 						<div class="students__item d-n" id="visibility-change">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Agathe');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Agathe', event, 'open');">
 								<img class="students__img" src="assets/img/Agathe.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Agathe</h3>
 							<p class="students__text text adaptive">Creativity Saver</p>
 						</div>
 						<div class="students__item d-n" id="visibility-change">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Oriana');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Oriana', event, 'open');">
 								<img class="students__img" src="assets/img/Oriana.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Oriana</h3>
 							<p class="students__text text adaptive">Party Manager</p>
 						</div>
 						<div class="students__item d-n" id="visibility-change">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Cecilia');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Cecilia', event, 'open');">
 								<img class="students__img" src="assets/img/Cecilia.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Cecilia</h3>
 							<p class="students__text text adaptive">Salsa Teacher</p>
 						</div>
 						<div class="students__item d-n" id="visibility-change">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Fabien');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Fabien', event, 'open');">
 								<img class="students__img" src="assets/img/Fabien.png" alt="man" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Fabien</h3>
 							<p class="students__text text adaptive">Agile Boss</p>
 						</div>
 						<div class="students__item d-n" id="visibility-change">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Pierre-Etienne');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Pierre-Etienne', event, 'open');">
 								<img class="students__img" src="assets/img/PE.png" alt="man" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Pierre-Etienne</h3>
 							<p class="students__text text adaptive">Mario Kart Champion</p>
 						</div>
 						<div class="students__item d-n" id="visibility-change">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Morgan');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Morgan', event, 'open');">
 								<img class="students__img" src="assets/img/Morgan.png" alt="man" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Morgan</h3>
 							<p class="students__text text adaptive">Micro-Interactions Boss</p>
 						</div>
 						<div class="students__item d-n" id="visibility-change">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'Margot');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('Margot', event, 'open');">
 								<img class="students__img" src="assets/img/Margot.png" alt="woman" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">Margot</h3>
 							<p class="students__text text adaptive">Yogi Master</p>
 						</div>
 						<div class="students__item d-n" id="visibility-change">
-							<button class="students__link link-on-modal" onclick="showMWAbout(event, 'François');">
+							<button class="students__link link-on-modal" onclick="statusMWAbout('François', event, 'open');">
 								<img class="students__img" src="assets/img/François.png" alt="man" />
 							</button>
 							<h3 class="students__h3 h3 adaptive">François</h3>
@@ -335,7 +397,7 @@
 						</div>
 					</div>
 					<div class="students__footer">
-						<div class="students__btn btn-apply btn-apply--color--blue visibility-btn" onclick="showMoreStudent();">More</div>
+						<div class="students__btn btn btn-apply btn--color--blue visibility-btn" onclick="showMoreStudent();">More</div>
 					</div>
 				</div>
 			</div>
@@ -344,21 +406,21 @@
 					<h2 class="teachers__h2 h2 h2--color--black adaptive">The Teachers</h2>
 					<div class="teachers__body">
 						<div class="teachers__item">
-							<button class="teachers__link link-on-modal" href="#" onclick="showMWAbout(event, 'Jérémie');">
+							<button class="teachers__link link-on-modal" href="#" onclick="statusMWAbout('Jérémie', event, 'open');">
 								<img class="teachers__img" src="assets/img/Jérémie.png" alt="man" />
 							</button>
 							<h3 class="teachers__h3 h3 adaptive">Jérémie</h3>
 							<p class="teachers__text text adaptive">Dear Leader</p>
 						</div>
 						<div class="teachers__item">
-							<button class="teachers__link link-on-modal" href="#" onclick="showMWAbout(event, 'Ella');">
+							<button class="teachers__link link-on-modal" href="#" onclick="statusMWAbout('Ella', event, 'open');">
 								<img class="teachers__img" src="assets/img/Ella.png" alt="woman" />
 							</button>
 							<h3 class="teachers__h3 h3 adaptive">Ella</h3>
 							<p class="teachers__text text adaptive">Extrem User</p>
 						</div>
 						<div class="teachers__item">
-							<button class="teachers__link link-on-modal" href="#" onclick="showMWAbout(event, 'Elo');">
+							<button class="teachers__link link-on-modal" href="#" onclick="statusMWAbout('Elo', event, 'open');">
 								<img class="teachers__img" src="assets/img/Elo.png" alt="woman" />
 							</button>
 							<h3 class="teachers__h3 h3 adaptive">Elo</h3>
@@ -371,7 +433,7 @@
 		<footer class="pt--pb">
 			<div class="wrapper">
 				<h2 class="h2 h2--color--white adaptive">Wanna be&nbsp;a&nbsp;part of&nbsp;it?</h2>
-				<button class="btn-apply btn-apply--color--white adaptive">Apply now</button>
+				<button class="btn btn--color--white btn-apply adaptive" onclick="statusMWApply(event, 'open');">Apply now</button>
 			</div>
 		</footer>
 		<script src="assets/js/script.js"></script>
